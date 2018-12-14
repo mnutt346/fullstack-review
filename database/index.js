@@ -36,7 +36,7 @@ let save = (data) => {
 
     Repo.create(queryObj, (err, res) => {
       if (err) {
-        console.log(err);
+        // console.log(err);
       }
       console.log('SUCCESS: INSERTED INTO DB');
     });
@@ -46,8 +46,19 @@ let save = (data) => {
 }
 
 
-let retrieve = () => {
-
+let retrieve = (cb) => {
+  let query = Repo.find({});
+  query.exec((err, docs) => {
+    if (err) {
+      console.log('ERROR IN RETRIEVAL AT DB INDEX.JS')
+    }
+    // console.log('DOCS IN QUERY: ', docs)
+    // let data = docs[0]._doc
+    // console.log("data IN DB RETRIEVAL : ", data);
+    // return data;
+    cb(docs)
+  });
 }
 
 module.exports.save = save;
+module.exports.retrieve = retrieve;

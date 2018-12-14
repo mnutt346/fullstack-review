@@ -12,7 +12,14 @@ app.use(bodyParser.json());
 
 app.post('/repos', function (req, res) {
   let username = req.body.username;
-  let data = helpers.getReposByUsername(username);
+  helpers.getReposByUsername(username);
+  db.retrieve((data) => {
+    let repoData = [];
+    for (let i = 0; i < data.length; i++) {
+
+    }
+    console.log('DATA IN SERVER RETRIEVED FROM DB:  ', data[0]._doc);
+  });
 });
 
 app.get('/repos', function (req, res) {
