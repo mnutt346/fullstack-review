@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.post('/repos', function (req, res) {
   let username = req.body.username;
-  helpers.getReposByUsername(username);
+  let data = helpers.getReposByUsername(username);
 });
 
 app.get('/repos', function (req, res) {
