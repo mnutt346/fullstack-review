@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const getResponseByUsername = require('../helpers/github.js');
+const helpers = require('../helpers/github.js');
+
+
 
 let app = express();
 
@@ -10,7 +12,7 @@ app.use(bodyParser.json());
 
 app.post('/repos', function (req, res) {
   let username = req.body.username;
-  getResponseByUsername(username);
+  helpers.getReposByUsername(username);
 });
 
 app.get('/repos', function (req, res) {
