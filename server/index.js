@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helpers = require('../helpers/github.js');
-
+const db = require('../database/index.js');
 
 
 let app = express();

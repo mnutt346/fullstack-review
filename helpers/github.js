@@ -8,7 +8,7 @@ let getReposByUsername = (username) => {
   // The options object has been provided to help you out, 
   // but you'll have to fill in the URL
   let options = {
-    url: `https://api.github.com/users/${username}`,
+    url: `https://api.github.com/users/${username}/repos`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
@@ -19,7 +19,7 @@ let getReposByUsername = (username) => {
     if (error) {
       console.log("ERROR in github API request")
     }
-    console.log('Response from github API:  ', response)
+    console.log('Response body from github API:  ', JSON.parse(response.body))
   })
 
 
