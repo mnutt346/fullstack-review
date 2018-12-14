@@ -16,9 +16,18 @@ app.post('/repos', function (req, res) {
   db.retrieve((data) => {
     let repoData = [];
     for (let i = 0; i < data.length; i++) {
-
+      let userObj = {
+        repoID: data[i]._doc.repoID,
+        userID: data[i]._doc.userID,
+        username: data[i]._doc.username,
+        repo_name: data[i]._doc.repo_name,
+        url: data[i]._doc.url,
+        stars: data[i]._doc.stars
+      }
+      repoData.push(userObj);
+      console.log('USER array IN SERVER:  ', repoData)
     }
-    console.log('DATA IN SERVER RETRIEVED FROM DB:  ', data[0]._doc);
+    // console.log('DATA IN SERVER RETRIEVED FROM DB:  ', data[0]._doc);
   });
 });
 
