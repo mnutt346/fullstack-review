@@ -52,10 +52,7 @@ let retrieve = (cb) => {
     if (err) {
       console.log('ERROR IN RETRIEVAL AT DB INDEX.JS')
     }
-    // console.log('DOCS IN QUERY: ', docs)
-    // let data = docs[0]._doc
-    // console.log("data IN DB RETRIEVAL : ", data);
-    // return data;
+
     cb(docs)
   });
 }
