@@ -20,6 +20,7 @@ class App extends React.Component {
       contentType: 'application/json'
     })
       .done((data) => {
+        console.log('DATA SENT TO CLIENT FROM GET:  ', data);
         this.setState({ repos: data }
           // console.log('repos in App state on load of homepage: ', this.state.respos)
         )
