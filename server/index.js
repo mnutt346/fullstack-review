@@ -51,6 +51,13 @@ app.get('/repos', function (req, res) {
   });
 });
 
+app.get('/users', (req, res) => {
+  db.getAllUsers((users) => {
+    // console.log('Users retrieved in server: ', users)
+    res.send(users);
+  })
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '../client/dist/index.html'));
 });

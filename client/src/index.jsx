@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import Users from './components/Users.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      users: []
     }
 
   }
@@ -20,12 +22,22 @@ class App extends React.Component {
       contentType: 'application/json'
     })
       .done((data) => {
-        console.log('DATA SENT TO CLIENT FROM GET:  ', data);
+        // console.log('DATA SENT TO CLIENT FROM GET:  ', data);
         this.setState({ repos: data }
           // console.log('repos in App state on load of homepage: ', this.state.respos)
         )
 
       })
+
+    $.ajax({
+      method: 'GET',
+      url: '/users',
+      contentType: 'application/json'
+    }).done((users) => {
+      this.setState({ users: users })
+      console.log('USERS in App state: ', users)
+
+    })
   }
 
   search(term) {
@@ -48,6 +60,7 @@ class App extends React.Component {
       <h1>Github Fetcher</h1>
       <Search onSearch={this.search.bind(this)} />
       <RepoList repos={this.state.repos} />
+      <Users users={this.state.users} />
     </div>)
   }
 }

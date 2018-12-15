@@ -38,13 +38,23 @@ let save = (data) => {
       if (err) {
         console.log('ERROR IN CREATE QUERY');
       }
-      console.log('SUCCESS: INSERTED INTO DB');
+
+      console.log('SUCCESS: INSERTED INTO DB ');
     });
 
   }
 
 }
 
+let getAllUsers = (cb) => {
+  Repo.find({}).distinct('username', (err, users) => {
+    if (err) {
+      console.log('ERROR GETTING ALL USERS')
+    }
+    // console.log("ALL USERS:  ", users)
+    cb(users);
+  })
+}
 
 let retrieve = (cb) => {
   let query = Repo.find({}).sort({ stars: -1 }).limit(25);
@@ -59,3 +69,4 @@ let retrieve = (cb) => {
 
 module.exports.save = save;
 module.exports.retrieve = retrieve;
+module.exports.getAllUsers = getAllUsers;
