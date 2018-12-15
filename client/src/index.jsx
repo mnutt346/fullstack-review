@@ -38,15 +38,15 @@ class App extends React.Component {
       .done((data) => {
         // console.log("SUCCESS -- AJAX POST: ", data)
         this.setState({ repos: data })
-        // console.log('repos in App state after search:  ', this.state.repos)
+        console.log('repos in App state after search:  ', this.state.repos)
       });
   }
 
   render() {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos} />
       <Search onSearch={this.search.bind(this)} />
+      <RepoList repos={this.state.repos} />
     </div>)
   }
 }
