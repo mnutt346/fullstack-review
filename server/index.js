@@ -27,6 +27,7 @@ app.post('/repos', function (req, res) {
       repoData.push(userObj);
       console.log('USER array IN SERVER:  ', repoData)
     }
+    res.send(repoData);
     // console.log('DATA IN SERVER RETRIEVED FROM DB:  ', data[0]._doc);
   });
 });

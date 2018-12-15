@@ -36,7 +36,7 @@ let save = (data) => {
 
     Repo.create(queryObj, (err, res) => {
       if (err) {
-        // console.log(err);
+        console.log('ERROR IN CREATE QUERY');
       }
       console.log('SUCCESS: INSERTED INTO DB');
     });
@@ -47,7 +47,7 @@ let save = (data) => {
 
 
 let retrieve = (cb) => {
-  let query = Repo.find({});
+  let query = Repo.find({}).sort({ stars: -1 }).limit(25);
   query.exec((err, docs) => {
     if (err) {
       console.log('ERROR IN RETRIEVAL AT DB INDEX.JS')

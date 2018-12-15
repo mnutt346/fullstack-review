@@ -21,7 +21,9 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({ username: term })
     })
-      .done(console.log("SUCCESS -- AJAX POST"));
+      .done((data) => {
+        console.log("SUCCESS -- AJAX POST: ", data)
+      });
   }
 
   render() {
