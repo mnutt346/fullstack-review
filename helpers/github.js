@@ -1,6 +1,8 @@
 const request = require('request');
 const config = require('../config.js');
 const db = require('../database/index.js');
+require('dotenv').config()
+
 
 
 let getReposByUsername = (username) => {
@@ -14,7 +16,7 @@ let getReposByUsername = (username) => {
     url: `https://api.github.com/users/${username}/repos`,
     headers: {
       'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
+      'Authorization': `token ${process.env.API_KEY}`
     }
   };
 
