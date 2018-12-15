@@ -22,7 +22,9 @@ class App extends React.Component {
       data: JSON.stringify({ username: term })
     })
       .done((data) => {
-        console.log("SUCCESS -- AJAX POST: ", data)
+        // console.log("SUCCESS -- AJAX POST: ", data)
+        this.setState({ repos: data })
+        console.log('repos in App state:  ', this.state.repos)
       });
   }
 

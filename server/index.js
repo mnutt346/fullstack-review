@@ -10,10 +10,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.use(bodyParser.json());
 
-app.post('/repos', function (req, res) {
+app.post('/repos', (req, res) => {
   let username = req.body.username;
-  helpers.getReposByUsername(username);
-  db.retrieve((data) => {
+  helpers.getReposByUsername(username)
+  setTimeout(() => (db.retrieve((data) => {
     let repoData = [];
     for (let i = 0; i < data.length; i++) {
       let userObj = {
@@ -25,11 +25,12 @@ app.post('/repos', function (req, res) {
         stars: data[i]._doc.stars
       }
       repoData.push(userObj);
-      console.log('USER array IN SERVER:  ', repoData)
+      // console.log('USER array IN SERVER:  ', repoData)
     }
+
     res.send(repoData);
-    // console.log('DATA IN SERVER RETRIEVED FROM DB:  ', data[0]._doc);
-  });
+  })), 600)
+
 });
 
 app.get('/repos', function (req, res) {
